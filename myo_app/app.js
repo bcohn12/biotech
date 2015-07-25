@@ -41,8 +41,7 @@ Myo.connect();
 var processEmgData = function(emgData) {
     //console.log(emgData);
     //var jsonEmg = JSON.stringify(rawEmgData);
-    jsonEmg = {"var1": "1"};
-    console.log(JSON.stringify(jsonEmg));
+    jsonEmg = {"SensorValues": emgData}
     //console.log(jsonEmg);
     
     request.post(
