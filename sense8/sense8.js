@@ -42,8 +42,14 @@ Router.map(function () {
 
     action: function () {
       var filename = this.params.filename;
-      console.log("I got this:");
+      console.log("===========Begin=============");
+      console.log("Here is the request");
       console.log(this.request);
+      console.log("Here is the request.body");
+      console.log(this.request.body);
+      console.log("Here is 'this'")
+      console.log(this)
+      console.log("===========End=============");
       resp = {var1 : this.request.body.var1,
               time : new Date()};
       Samples.insert(resp)
