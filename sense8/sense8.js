@@ -18,16 +18,17 @@ if (Meteor.isClient) {
       Session.set('counter', Session.get('counter') + 1);
     }
   });
+
+  Template.SensorNow.helpers({
+    sensor: function() {
+      return Samples.findOne();
+    }
+  });
 }
 
 if (Meteor.isServer) {
    Meteor.publish("tasks", function () {
-    return Tasks.find({
-      $or: [
-        { private: {$ne: true} },
-        { owner: this.userId }
-      ]
-    });
+    return Tasks.find({});
   });
   Meteor.startup(function () {
     // code to run on server at startup
@@ -41,9 +42,10 @@ Router.map(function () {
 
     action: function () {
       var filename = this.params.filename;
-      resp = {'lat' : this.request.body.lat,
-              'lon' : this.request.body.lon};
-      Samples.insert(this.request.body)
+      console.log(JSON.stringify(this.request.body, null, 2))
+      resp = {var1 : this.request.body.var1,
+              time : new Date()};
+      Samples.insert(resp)
       this.response.writeHead(200, {'Content-Type': 
                                     'application/json; charset=utf-8'});
       this.response.end(JSON.stringify(resp));
