@@ -35,6 +35,10 @@ if (Meteor.isServer) {
   });
 }
 
+Router.onBeforeAction(Iron.Router.bodyParser.urlencoded({
+    extended: false
+}));
+
 Router.map(function () {
   this.route('serverFile', {
     path: '/receive/',
@@ -49,6 +53,8 @@ Router.map(function () {
       console.log(this.request.body);
       console.log("Here is 'this'")
       console.log(this)
+      console.log("Here is this.response")
+      console.log(this.response)
       console.log("===========End=============");
       resp = {var1 : this.request.body.var1,
               time : new Date()};
