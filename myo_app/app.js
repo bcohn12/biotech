@@ -43,14 +43,15 @@ var processEmgData = function(emgData) {
     //console.log(emgData);
     //var jsonEmg = JSON.stringify(rawEmgData);
     var TheTerminalCommand = 'python my_script.py ' + String(emgData).replace(/,/g , " ");
-    console.log(TheTerminalCommand)
+    // console.log(TheTerminalCommand)
+    console.log(".")
     
     var sys = require('sys')
     var exec = require('child_process').exec;
     var child;
     child = exec(TheTerminalCommand, function (error, stdout, stderr) {
-    sys.print('stdout: ' + stdout);
-    sys.print('stderr: ' + stderr);
+    // sys.print('stdout: ' + stdout);
+    // sys.print('stderr: ' + stderr);
     if (error !== null) {
      console.log('exec error: ' + error);
   } 

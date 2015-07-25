@@ -44,7 +44,7 @@ Router.map(function () {
 
     action: function () {
       var filename = this.params.filename;
-      console.log(this.request.body.s1)
+      console.log(".")
       theData = {'s1' : parseInt(this.request.body.s1),
               's2' : parseInt(this.request.body.s2),
               's3' : parseInt(this.request.body.s3),
