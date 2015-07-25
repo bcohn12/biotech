@@ -1,18 +1,20 @@
 //init the database which will hold all of the time series data
 // Each sample is a JSON element that holds the sensor values at a given time.
+
+
 Samples = new Mongo.Collection("Samples");
 
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
   Meteor.subscribe("Samples");
-  Template.hello.helpers({
+  Template.home.helpers({
     counter: function () {
       return Session.get('counter');
     }
   });
 
-  Template.hello.events({
+  Template.home.events({
     'click button': function () {
       // increment the counter when button is clicked
       Session.set('counter', Session.get('counter') + 1);
@@ -35,10 +37,6 @@ if (Meteor.isServer) {
   });
 }
 
-/*Router.onBeforeAction(Iron.Router.bodyParser.urlencoded({
-    extended: false
-}));*/
-
 Router.map(function () {
   this.route('serverFile', {
     path: '/receive/',
@@ -46,24 +44,23 @@ Router.map(function () {
 
     action: function () {
       var filename = this.params.filename;
-      console.log("===========Begin=============");
-      console.log("Here is the request");
-      //console.log(this.request);
-      //console.log("Here is the request.body");
-       console.log(this.request.body);
-      // console.log("Here is 'this'")
-      // console.log(this)
-      // console.log("Here is this.response")
-      //console.log(this.response)
-      console.log("===========End=============");
-      //console.log(this.request.body);
-      //console.log(this.response);
-      resp = {var1 : this.request.body.var1,
-              time : new Date()};
-      Samples.insert(resp)
+      console.log(this.request.body.s1)
+      theData = {'s1' : parseInt(this.request.body.s1),
+              's2' : parseInt(this.request.body.s2),
+              's3' : parseInt(this.request.body.s3),
+              's4' : parseInt(this.request.body.s4),
+              's5' : parseInt(this.request.body.s5),
+              's6' : parseInt(this.request.body.s6),
+              's7' : parseInt(this.request.body.s7),
+              's8' : parseInt(this.request.body.s8)
+            };
+      Samples.insert(theData)
+
       this.response.writeHead(200, {'Content-Type': 
                                     'application/json; charset=utf-8'});
-      this.response.end(JSON.stringify(resp));
+      this.response.end(JSON.stringify(theData));
     }
   });
 });
+
+Router.route('/home');
