@@ -42,17 +42,18 @@ Myo.connect();
 var processEmgData = function(emgData) {
     //console.log(emgData);
     //var jsonEmg = JSON.stringify(rawEmgData);
-    var jsonEmg = {"var1": "1"};
-    //console.log(JSON.stringify(jsonEmg));
-    //console.log(jsonEmg);
-    request.post(
-        'http://localhost/api/101',
-        JSON.stringify(jsonEmg),
-        function (error,response,body){
-            if (!error && response.statusCode == 200) {
-                console.log(body);
-            }
-        }
-    );
+    var TheTerminalCommand = 'python my_script.py ' + String(emgData).replace(/,/g , " ");
+    console.log(TheTerminalCommand)
+    
+    var sys = require('sys')
+    var exec = require('child_process').exec;
+    var child;
+    child = exec(TheTerminalCommand, function (error, stdout, stderr) {
+    sys.print('stdout: ' + stdout);
+    sys.print('stderr: ' + stderr);
+    if (error !== null) {
+     console.log('exec error: ' + error);
+  } 
+});
     
 }
