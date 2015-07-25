@@ -21,3 +21,14 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+Router.route('/api', {where:'server'})
+.put(function(){
+
+  var req;
+  req = this.request;
+  console.log(req.body);
+	//this is where we need to add it into the database.
+  this.response.end('PUT finished.');
+
+});
