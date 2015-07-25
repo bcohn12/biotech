@@ -8,6 +8,9 @@ Raspberry Pi
 
 
 #Myo Resources
+http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
+
+
 Python API
 https://github.com/smartin015/MYO-python
 associated Instructables tutorial:
@@ -19,3 +22,10 @@ If you’re a developer, here’s how to use it: just implement the onEmgData fu
 Install the latest official Meteor release from your terminal:
 
 ```curl https://install.meteor.com/ | sh```
+
+#Mac tutorial
+#Installation and Setup
+0. Download, move to Applications, & open: https://www.thalmic.com/start/
+0. Go through setup with accesibility options, etc
+
+0. Follow the ridiculously slow-paced introduction and calibration steps
