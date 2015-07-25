@@ -50,7 +50,7 @@ Router.map(function () {
       console.log("Here is the request");
       console.log(this.request);
       console.log("Here is the request.body");
-      console.log(this.request.body);
+      console.log(this.request.body.var1);
       console.log("Here is 'this'")
       console.log(this)
       console.log("Here is this.response")
