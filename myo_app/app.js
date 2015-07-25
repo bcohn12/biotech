@@ -21,7 +21,8 @@ Myo.on('fist', function(){
    this.vibrate();
 })
 
-var rawEmgData = {
+var rawEmgData = [0,0,0,0,0,0,0,0];
+/*var rawEmgData = {
     sense1: 0,
     sense1: 0,
     sense1: 0,
@@ -30,7 +31,7 @@ var rawEmgData = {
     sense1: 0,
     sense1: 0,
     sense1: 0  
-};
+};*/
 
 Myo.on('emg', function(data){
     rawEmgData = data;
@@ -41,17 +42,17 @@ Myo.connect();
 var processEmgData = function(emgData) {
     //console.log(emgData);
     //var jsonEmg = JSON.stringify(rawEmgData);
-    jsonEmg = {"var1": "1"};
-    console.log(JSON.stringify(jsonEmg));
+    var jsonEmg = {"var1": "1"};
+    //console.log(JSON.stringify(jsonEmg));
     //console.log(jsonEmg);
-    
     request.post(
-        'http://localhost:3000/receive',
-        jsonEmg,
+        'http://localhost/api/101',
+        JSON.stringify(jsonEmg),
         function (error,response,body){
             if (!error && response.statusCode == 200) {
                 console.log(body);
             }
         }
     );
+    
 }
