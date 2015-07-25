@@ -43,6 +43,7 @@ Router.map(function () {
     action: function () {
       var filename = this.params.filename;
       console.log(JSON.stringify(this.request.body, null, 2))
+      console.log("I got something!")
       resp = {var1 : this.request.body.var1,
               time : new Date()};
       Samples.insert(resp)
