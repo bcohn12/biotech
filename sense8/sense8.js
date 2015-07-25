@@ -48,13 +48,13 @@ Router.map(function () {
       var filename = this.params.filename;
       console.log("===========Begin=============");
       console.log("Here is the request");
-      console.log(this.request);
-      console.log("Here is the request.body");
-      console.log(this.request.body.var1);
-      console.log("Here is 'this'")
-      console.log(this)
-      console.log("Here is this.response")
-      console.log(this.response)
+      console.log(JSON.stringify(this.request));
+      // console.log("Here is the request.body");
+      // console.log(this.request.body.var1);
+      // console.log("Here is 'this'")
+      // console.log(this)
+      // console.log("Here is this.response")
+      // console.log(this.response)
       console.log("===========End=============");
       resp = {var1 : this.request.body.var1,
               time : new Date()};
