@@ -22,8 +22,10 @@ if (Meteor.isClient) {
   });
 
   Template.SensorNow.helpers({
-    sensor: function() {
-      return Samples.findOne();
+    mostRecentSensor: function(Num) {
+      var len = Samples.find().count()
+      var TimeSlice = Samples.find().fetch()[len-1]
+      return TimeSlice.moment[Num];
     }
   });
 }
@@ -45,14 +47,14 @@ Router.map(function () {
     action: function () {
       var filename = this.params.filename;
       console.log(".")
-      theData = {'s1' : parseInt(this.request.body.s1),
-              's2' : parseInt(this.request.body.s2),
-              's3' : parseInt(this.request.body.s3),
-              's4' : parseInt(this.request.body.s4),
-              's5' : parseInt(this.request.body.s5),
-              's6' : parseInt(this.request.body.s6),
-              's7' : parseInt(this.request.body.s7),
-              's8' : parseInt(this.request.body.s8)
+      theData = {'moment': [parseInt(this.request.body.s1),
+                           parseInt(this.request.body.s2),
+                           parseInt(this.request.body.s3),
+                           parseInt(this.request.body.s4),
+                           parseInt(this.request.body.s5),
+                           parseInt(this.request.body.s6),
+                           parseInt(this.request.body.s7),
+                           parseInt(this.request.body.s8)]
             };
       Samples.insert(theData)
 
