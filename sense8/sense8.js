@@ -29,6 +29,6 @@ Router.route('/api', {where:'server'})
   req = this.request;
   console.log(req.body);
 	//this is where we need to add it into the database.
+this.response.writeHead(200, {'Content-Type':'application/json; charset=utf-8'});
   this.response.end('PUT finished.');
-
 });
