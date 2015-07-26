@@ -2,15 +2,17 @@
 // Each sample is a JSON element that holds the sensor values at a given time.
 
 
+
+
 Samples = new Mongo.Collection("Samples");
 
 if (Meteor.isClient) {
   // counter starts at 0
-  Session.setDefault('counter', 0);
+  Session.setDefault('threshold', 200);
   Meteor.subscribe("Samples");
   Template.home.helpers({
     counter: function () {
-      return Session.get('counter');
+      return Session.get('threshold');
     }
   });
 
@@ -24,17 +26,28 @@ if (Meteor.isClient) {
   Template.SensorNow.helpers({
     mostRecentSensor: function(Num) {
       var len = Samples.find().count()
-      var TimeSlice = Samples.find().fetch()[len-1]
-      console.log(TimeSlice);
-      return Math.abs(TimeSlice.moment[Num]);
+      var TimeSlice = Samples.find().fetch()
+      var LastOne = TimeSlice[len-1]
+      var oneMoment = LastOne.moment
+      return Math.abs(oneMoment[Num]);
     },
     sumSensorsNow: function() {
       var len = Samples.find().count()
-      var TimeSlice = Samples.find().fetch()[len-1]
-      console.log(TimeSlice);
-      // var sum = Math.sum(Math.abs(TimeSlice.moment));
-      return 10;
+      var TimeSlice = Samples.find().fetch()
+      var lastOne = TimeSlice[len-1]
+      var oneMoment = lastOne.moment
+      var res = _(oneMoment).map(function(n){ return Math.abs(n); });
+      return res.reduce(function(pv, cv) { return pv + cv; }, 0);
     },
+    sumOverThreshold: function() {
+      var len = Samples.find().count()
+      var TimeSlice = Samples.find().fetch()
+      var lastOne = TimeSlice[len-1]
+      var oneMoment = lastOne.moment
+      var res = _(oneMoment).map(function(n){ return Math.abs(n); });
+      var SUM = res.reduce(function(pv, cv) { return pv + cv; }, 0);
+      if (SUM>Session.get('threshold')) {return true} else{return false};
+    }
   });
 }
 
