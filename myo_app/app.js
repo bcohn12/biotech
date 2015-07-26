@@ -10,9 +10,11 @@ Myo.onError = function () {
 Myo.on('connected',function(){
     console.log('Connected!');
     this.streamEMG(true);
+    console.log('startup engaged')
     setInterval(function(){
         processEmgData(rawEmgData);
-    },2000)
+        console.log('instep')
+    },1000)
 
 })
 

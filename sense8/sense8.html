@@ -1,31 +1,59 @@
 <head>
-  <title>sense8</title>
+  <title>Sense8</title>
 </head>
 
 <body>
-  <h1>Welcome to Sense8!</h1>
+  <h1>Sense8 PT Platform</h1>
 
 
 </body>
 
 <template name="home">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-
   {{>SensorNow}}
 </template>
 
 <template name="SensorNow">
-	Sensor1: {{mostRecentSensor 1}}<br>
-	Sensor2: {{mostRecentSensor 2}}<br>
-	Sensor3: {{mostRecentSensor 3}}<br>
-	Sensor4: {{mostRecentSensor 4}}<br>
-	Sensor5: {{mostRecentSensor 5}}<br>
-	Sensor6: {{mostRecentSensor 6}}<br>
-	Sensor7: {{mostRecentSensor 7}}<br>
-	Sensor8: {{mostRecentSensor 0}}<br>
+{{#if sumOverThreshold}}
+<style>
+body {
+    
+    background-color:#d00;
+}
 
-	Sum: {{sumSensorsNow}}
+h1 {
+    color: #fff;
+}
 
-	Is the sum over the threshold?  {{#if sumOverThreshold}} Yes {{else}} nope. all good.{{/if}}
+p {
+    color: #fff;
+}
+</style>
+{{else}}
+<style>
+body {
+    background-color: #00ff00;
+
+}
+
+h1 {
+    color: #fff;
+}
+
+p {
+    color: #fff;
+}
+</style>
+{{/if}}
+
+
+	<p>Sensor1: {{mostRecentSensor 1}}</p>
+	<p>Sensor2: {{mostRecentSensor 2}}</p>
+	<p>Sensor3: {{mostRecentSensor 3}}</p>
+	<p>Sensor4: {{mostRecentSensor 4}}</p>
+	<p>Sensor5: {{mostRecentSensor 5}}</p>
+	<p>Sensor6: {{mostRecentSensor 6}}</p>
+	<p>Sensor7: {{mostRecentSensor 7}}</p>
+	<p>Sensor8: {{mostRecentSensor 0}}</p>
+
+	<p>Sum: {{sumSensorsNow}}</p>
 </template>
