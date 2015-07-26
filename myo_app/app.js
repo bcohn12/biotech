@@ -12,7 +12,7 @@ Myo.on('connected',function(){
     this.streamEMG(true);
     setInterval(function(){
         processEmgData(rawEmgData);
-    },1000)
+    },2000)
 
 })
 

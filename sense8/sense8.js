@@ -25,8 +25,16 @@ if (Meteor.isClient) {
     mostRecentSensor: function(Num) {
       var len = Samples.find().count()
       var TimeSlice = Samples.find().fetch()[len-1]
-      return TimeSlice.moment[Num];
-    }
+      console.log(TimeSlice);
+      return Math.abs(TimeSlice.moment[Num]);
+    },
+    sumSensorsNow: function() {
+      var len = Samples.find().count()
+      var TimeSlice = Samples.find().fetch()[len-1]
+      console.log(TimeSlice);
+      // var sum = Math.sum(Math.abs(TimeSlice.moment));
+      return 10;
+    },
   });
 }
 
